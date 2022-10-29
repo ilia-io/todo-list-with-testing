@@ -45,7 +45,7 @@
   flex: 0 0 auto;
 }
 
-.active-btn {
+.active {
   border-color: #61dafb;
   background-color: #61dafb;
 }
@@ -80,6 +80,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 0 0 auto;
 }
 
 li > span {
