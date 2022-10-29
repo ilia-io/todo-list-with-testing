@@ -1,24 +1,70 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Todo from './components/Todo';
+
+const todos = [
+  {
+    title: 'Тестовое задание',
+    isCompleted: false,
+  },
+  {
+    title: 'Прекрасный код',
+    isCompleted: false,
+  },
+
+  {
+    title: 'Покрытие тестами',
+    isCompleted: false,
+  },
+  {
+    title:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia, nobis!',
+    isCompleted: false,
+  },
+];
+
+const AddTodo = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="todos">
+        <header className="App-header">
+          <h1>
+            to<i>do</i>s
+          </h1>
+        </header>
+        <div className="actions">
+          <p>Осталось сделать: 2</p>
+          <button type="button">Все</button>
+          <button type="button">Активные</button>
+          <button type="button">Выполненные</button>
+          <button type="button">Очистить выполненные</button>
+        </div>
+        <form
+          onSubmit={(event) => {
+            AddTodo(event);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <input
+            className="input-todo"
+            type="text"
+            placeholder="Что будем делать?"
+          />
+          <button type="submit">add</button>
+        </form>
+        <ul>
+          {todos.map((todo) => (
+            <Todo
+              key={todo.title}
+              title={todo.title}
+              isCompleted={todo.isCompleted}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
