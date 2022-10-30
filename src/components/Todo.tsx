@@ -31,7 +31,18 @@ const Todo: React.FC<ITodoProps> = ({
   return (
     <li>
       <input onChange={onChangeStatus} checked={completed} type="checkbox" />
-      <span>{title}</span>
+      <span
+        style={
+          isCompleted
+            ? {
+                textDecorationLine: 'line-through',
+                textDecorationThickness: '1px',
+              }
+            : {}
+        }
+      >
+        {title}
+      </span>
       <button onClick={() => deleteTodo(id)} type="button">
         x
       </button>

@@ -30,24 +30,10 @@ const initialTodos = [
 
 function App() {
   const [todos, setTodos] = useState(initialTodos);
-  const [todosActive, setTodosActive] = useState(todos);
-  const [todosCompleted, setTodosCompleted] = useState(todos);
   const [categoryState, setCategoryState] = useState(0);
-
-  useEffect(() => {}, [categoryState]);
 
   const deleteTodo = (id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const onClickActiveBtn = () => {
-    setCategoryState(1);
-   // setTodos(todos.filter((todo) => todo.isCompleted === false));
-  };
-
-  const onClickCompletedBtn = () => {
-    setCategoryState(2);
-   // setTodos(todos.filter((todo) => todo.isCompleted === true));
   };
 
   const updateCheckStatus = (id: number) => {
@@ -56,6 +42,18 @@ function App() {
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       )
     );
+  };
+
+  const taskLeft = () => {
+    let count = 0;
+    todos.forEach((todo) => {
+      count += todo.isCompleted ? 0 : 1;
+    });
+    return count;
+  };
+
+  const clearCompleted = () => {
+    setTodos(todos.filter((todo) => todo.isCompleted === false));
   };
 
   const todosMap = todos.map((todo) => (
@@ -104,6 +102,8 @@ function App() {
         <Categories
           categoryState={categoryState}
           setCategoryState={setCategoryState}
+          taskLeft={taskLeft}
+          clearCompleted={clearCompleted}
         />
         <Form setTodos={setTodos} todos={todos} />
         <ul>
@@ -112,7 +112,6 @@ function App() {
             : categoryState === 1
             ? activeTodosMap
             : completedTodosMap}
-          {/* {todosMap} */}
         </ul>
       </div>
     </div>
