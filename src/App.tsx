@@ -1,56 +1,97 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import Categories from './components/Categories';
+import Form from './components/Form';
 import Todo from './components/Todo';
 
 const initialTodos = [
   {
     id: 1,
     title: 'Тестовое задание',
-    isCompleted: false,
+    isCompleted: true,
   },
   {
     id: 2,
     title: 'Прекрасный код',
-    isCompleted: false,
+    isCompleted: true,
   },
 
   {
     id: 3,
     title: 'Покрытие тестами',
-    isCompleted: false,
+    isCompleted: true,
   },
   {
     id: 4,
-    title:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia, nobis!',
+    title: 'Lorem ipsum dolor sit, amet co',
     isCompleted: false,
   },
 ];
 
-export const getId = () => new Date().valueOf();
-
 function App() {
   const [todos, setTodos] = useState(initialTodos);
-  const [addInput, setAddInput] = useState('');
-const [todosActive, setTodosActive] = useState(todos)
-const [todosCompleted, setTodosCompleted] = useState(todos)
-const [allBtnActive, setAllBtnActive] = useState(true)
-const [activeBtnActive, setActiveBtnActive] = useState(false);
-const [completedBtnActive, setCompletedBtnActive] = useState(false);
+  const [todosActive, setTodosActive] = useState(todos);
+  const [todosCompleted, setTodosCompleted] = useState(todos);
+  const [categoryState, setCategoryState] = useState(0);
 
-  const AddTodo = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setTodos([...todos, { id: getId(), title: addInput, isCompleted: false }]);
-    setAddInput('');
-  };
+  useEffect(() => {}, [categoryState]);
 
   const deleteTodo = (id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const setBtnActive = () => {
+  const onClickActiveBtn = () => {
+    setCategoryState(1);
+   // setTodos(todos.filter((todo) => todo.isCompleted === false));
+  };
 
-  }
+  const onClickCompletedBtn = () => {
+    setCategoryState(2);
+   // setTodos(todos.filter((todo) => todo.isCompleted === true));
+  };
+
+  const updateCheckStatus = (id: number) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  };
+
+  const todosMap = todos.map((todo) => (
+    <Todo
+      key={todo.id}
+      id={todo.id}
+      title={todo.title}
+      isCompleted={todo.isCompleted}
+      deleteTodo={deleteTodo}
+      updateCheckStatus={updateCheckStatus}
+    />
+  ));
+  const activeTodosMap = todos
+    .filter((todo) => todo.isCompleted === false)
+    .map((todo) => (
+      <Todo
+        key={todo.id}
+        id={todo.id}
+        title={todo.title}
+        isCompleted={todo.isCompleted}
+        deleteTodo={deleteTodo}
+        updateCheckStatus={updateCheckStatus}
+      />
+    ));
+  const completedTodosMap = todos
+    .filter((todo) => todo.isCompleted === true)
+    .map((todo) => (
+      <Todo
+        key={todo.id}
+        id={todo.id}
+        title={todo.title}
+        isCompleted={todo.isCompleted}
+        deleteTodo={deleteTodo}
+        updateCheckStatus={updateCheckStatus}
+      />
+    ));
 
   return (
     <div className="App">
@@ -60,43 +101,18 @@ const [completedBtnActive, setCompletedBtnActive] = useState(false);
             to<i>do</i>s
           </h1>
         </header>
-        <div className="actions">
-          <p>Осталось сделать: 2</p>
-          <button className={allBtnActive ? 'active' : ''} type="button">
-            Все
-          </button>
-          <button className={activeBtnActive ? 'active' : ''} type="button">
-            Активные
-          </button>
-          <button className={completedBtnActive ? 'active' : ''} type="button">
-            Выполненные
-          </button>
-          <button type="button">Очистить выполненные</button>
-        </div>
-        <form
-          onSubmit={(event) => {
-            AddTodo(event);
-          }}
-        >
-          <input
-            onChange={(event) => setAddInput(event.target.value)}
-            value={addInput}
-            className="input-todo"
-            type="text"
-            placeholder="Что будем делать?"
-          />
-          <button type="submit">add</button>
-        </form>
+        <Categories
+          categoryState={categoryState}
+          setCategoryState={setCategoryState}
+        />
+        <Form setTodos={setTodos} todos={todos} />
         <ul>
-          {todos.map((todo) => (
-            <Todo
-              key={todo.title}
-              id={todo.id}
-              title={todo.title}
-              isCompleted={todo.isCompleted}
-              deleteTodo={deleteTodo}
-            />
-          ))}
+          {categoryState === 0
+            ? todosMap
+            : categoryState === 1
+            ? activeTodosMap
+            : completedTodosMap}
+          {/* {todosMap} */}
         </ul>
       </div>
     </div>
