@@ -1,8 +1,12 @@
+body {
+  background-color: #282c34;
+}
+
 .App {
   background-color: #282c34;
   min-height: 100vh;
+  min-height: 100vw;
   display: flex;
-  align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -23,6 +27,8 @@
 }
 
 .todos {
+  margin-top: 5%;
+  height: 100%;
   max-width: 600px;
   background-color: #505766;
   display: flex;
@@ -44,8 +50,8 @@
 
 .actions > button {
   border-radius: 4px;
-  flex: 0 0 auto;
   margin: 0 6px;
+  flex: 1 1 1;
 }
 
 .active {
@@ -87,6 +93,9 @@ li {
   align-items: center;
   flex: 0 0 auto;
   border-radius: 1px;
+  border: 1px solid #687082;
+  padding: 2px;
+  margin: 1px;
 }
 
 li > span {

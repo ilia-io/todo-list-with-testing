@@ -30,8 +30,14 @@ const Todo: React.FC<ITodoProps> = ({
 
   return (
     <li>
-      <input onChange={onChangeStatus} checked={completed} type="checkbox" />
+      <input
+        data-testid="toggle-checkbox"
+        onChange={onChangeStatus}
+        checked={completed}
+        type="checkbox"
+      />
       <span
+        data-testid="toggle-text"
         style={
           isCompleted
             ? {

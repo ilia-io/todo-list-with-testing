@@ -31,6 +31,7 @@ const initialTodos = [
 function App() {
   const [todos, setTodos] = useState(initialTodos);
   const [categoryState, setCategoryState] = useState(0);
+  const [taskLeft, setTaskLeft] = useState(0);
 
   const deleteTodo = (id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
@@ -44,13 +45,17 @@ function App() {
     );
   };
 
-  const taskLeft = () => {
+  const taskLeftFun = () => {
     let count = 0;
     todos.forEach((todo) => {
       count += todo.isCompleted ? 0 : 1;
     });
-    return count;
+    setTaskLeft(count);
   };
+
+  useEffect(() => {
+    taskLeftFun();
+  }, [todos]);
 
   const clearCompleted = () => {
     setTodos(todos.filter((todo) => todo.isCompleted === false));
@@ -95,9 +100,7 @@ function App() {
     <div className="App">
       <div className="todos">
         <header className="App-header">
-          <h1>
-            to<i>do</i>s
-          </h1>
+          <h1>todos</h1>
         </header>
         <Categories
           categoryState={categoryState}

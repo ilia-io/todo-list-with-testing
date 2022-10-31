@@ -5,7 +5,7 @@ const categories = ['Все', 'Активные', 'Выполненные'];
 interface ICategoryProps {
   categoryState: number;
   setCategoryState: (id: number) => void;
-  taskLeft: () => void;
+  taskLeft: number;
   clearCompleted: () => void;
 }
 
@@ -17,7 +17,7 @@ const Categories: React.FC<ICategoryProps> = ({
 }) => {
   return (
     <div className="actions">
-      <p>{`Осталось сделать: ${taskLeft()}`}</p>
+      <p data-testid="text-test">{`Осталось сделать: ${taskLeft}`}</p>
       {categories.map((cat, index) => (
         <button
           onClick={() => setCategoryState(index)}
