@@ -28,6 +28,8 @@ const initialTodos = [
   },
 ];
 
+export const getId = () => new Date().valueOf();
+
 function App() {
   const [todos, setTodos] = useState(initialTodos);
   const [categoryState, setCategoryState] = useState(0);
@@ -59,6 +61,10 @@ function App() {
 
   const clearCompleted = () => {
     setTodos(todos.filter((todo) => todo.isCompleted === false));
+  };
+
+  const addTodo = (todoText:string) => {
+    setTodos([...todos, { id: getId(), title: todoText, isCompleted: false }]);
   };
 
   const todosMap = todos.map((todo) => (
@@ -108,7 +114,7 @@ function App() {
           taskLeft={taskLeft}
           clearCompleted={clearCompleted}
         />
-        <Form setTodos={setTodos} todos={todos} />
+        <Form addTodo={addTodo} />
         <ul>
           {categoryState === 0
             ? todosMap

@@ -12,7 +12,7 @@ describe('Todo component tests', () => {
     expect(li).toBeInTheDocument();
     expect(input).toBeInTheDocument();
     expect(title).toBeInTheDocument();
-    //expect(li).toMatchSnapshot();
+    expect(li).toMatchSnapshot();
   });
 
   it('Props text line-t', () => {
@@ -21,10 +21,16 @@ describe('Todo component tests', () => {
       textDecorationLine: 'line-through',
     });
   });
-  //getByRole('checkbox', { checked: true })
   it('Props text line-none', () => {
     render(<Todo isCompleted={false} title={'test'} />);
     expect(screen.getByTestId('toggle-text')).not.toHaveAttribute('style');
-    
+  });
+  it('delete button function', () => {
+    let testId = 0;
+    render(<Todo id={22} deleteTodo={(id) => (testId = id)} />);
+    const btn = screen.getByRole('button');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(testId).toBe(22);
   });
 });

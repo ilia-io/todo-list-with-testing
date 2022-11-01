@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component tests renders form 1`] = `
+<form
+  data-testid="form"
+>
+  <input
+    class="input-todo"
+    placeholder="Что будем делать?"
+    type="text"
+    value=""
+  />
+  <button
+    type="submit"
+  >
+    Добавить +
+  </button>
+</form>
+`;

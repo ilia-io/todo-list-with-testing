@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo component tests List renders 1`] = `
+<li>
+  <input
+    data-testid="toggle-checkbox"
+    type="checkbox"
+  />
+  <span
+    data-testid="toggle-text"
+  >
+    func
+  </span>
+  <button
+    type="button"
+  >
+    x
+  </button>
+</li>
+`;

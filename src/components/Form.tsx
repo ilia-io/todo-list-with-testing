@@ -2,25 +2,26 @@ import React, { useState } from 'react';
 import { ITodo } from './Todo';
 
 interface IFormProps {
-  todos: ITodo[];
-  setTodos: (todos: ITodo[] | ((prevVar: ITodo[]) => ITodo[])) => void;
+  // todos: ITodo[];
+  // setTodos: (todos: ITodo[] | ((prevVar: ITodo[]) => ITodo[])) => void;
+  addTodo: (addInput: string) => void
 }
 
-const getId = () => new Date().valueOf();
 
-const Form: React.FC<IFormProps> = ({ todos, setTodos }) => {
+const Form: React.FC<IFormProps> = ({ addTodo }) => {
   const [addInput, setAddInput] = useState('');
 
-  const AddTodo = (event: React.FormEvent<HTMLFormElement>) => {
+  const onClickAdd = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setTodos([...todos, { id: getId(), title: addInput, isCompleted: false }]);
+    addTodo(addInput);
     setAddInput('');
   };
 
   return (
     <form
+      data-testid="form"
       onSubmit={(event) => {
-        AddTodo(event);
+        onClickAdd(event);
       }}
     >
       <input
@@ -30,7 +31,7 @@ const Form: React.FC<IFormProps> = ({ todos, setTodos }) => {
         type="text"
         placeholder="Что будем делать?"
       />
-      <button type="submit">add</button>
+      <button type="submit">Добавить +</button>
     </form>
   );
 };

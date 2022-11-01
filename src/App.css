@@ -52,6 +52,7 @@ body {
   border-radius: 4px;
   margin: 0 6px;
   flex: 1 1 1;
+  padding: 3px;
 }
 
 .active {

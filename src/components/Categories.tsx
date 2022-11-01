@@ -18,14 +18,14 @@ const Categories: React.FC<ICategoryProps> = ({
   return (
     <div className="actions">
       <p data-testid="text-test">{`Осталось сделать: ${taskLeft}`}</p>
-      {categories.map((cat, index) => (
+      {categories.map((category, index) => (
         <button
           onClick={() => setCategoryState(index)}
           className={categoryState === index ? 'active' : ''}
           type="button"
           key={index}
         >
-          {cat}
+          {category}
         </button>
       ))}
       <button onClick={clearCompleted} type="button">
