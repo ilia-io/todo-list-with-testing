@@ -17,10 +17,12 @@ const Categories: React.FC<ICategoryProps> = ({
 }) => {
   return (
     <div className="actions">
-      <p data-testid="text-test">{`Осталось сделать: ${taskLeft}`}</p>
+      <p data-testid="text-test">
+        Осталось сделать: <span>{`${taskLeft}`}</span>
+      </p>
       {categories.map((category, index) => (
         <button
-        data-testid='categ-btn'
+          data-testid="categ-btn"
           onClick={() => setCategoryState(index)}
           className={categoryState === index ? 'active' : ''}
           type="button"
