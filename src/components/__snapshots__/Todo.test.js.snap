@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Todo component tests List renders 1`] = `
-<li>
+<li
+  data-testid="list-item"
+>
   <input
     data-testid="toggle-checkbox"
     type="checkbox"
@@ -12,6 +14,7 @@ exports[`Todo component tests List renders 1`] = `
     func
   </span>
   <button
+    data-testid="list-btn"
     type="button"
   >
     x

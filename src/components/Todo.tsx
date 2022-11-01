@@ -13,7 +13,6 @@ interface ITodoProps {
   deleteTodo: (id: number) => void;
   updateCheckStatus: (id: number) => void;
 }
-//setTodos: (todos: ITodo[] | ((prevVar: ITodo[]) => ITodo[])) => void;
 const Todo: React.FC<ITodoProps> = ({
   id,
   title,
@@ -29,7 +28,7 @@ const Todo: React.FC<ITodoProps> = ({
   };
 
   return (
-    <li>
+    <li data-testid="list-item">
       <input
         data-testid="toggle-checkbox"
         onChange={onChangeStatus}
@@ -49,7 +48,11 @@ const Todo: React.FC<ITodoProps> = ({
       >
         {title}
       </span>
-      <button onClick={() => deleteTodo(id)} type="button">
+      <button
+        data-testid="list-btn"
+        onClick={() => deleteTodo(id)}
+        type="button"
+      >
         x
       </button>
     </li>

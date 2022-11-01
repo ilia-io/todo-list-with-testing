@@ -1,21 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Categories component tests renders correctly initial document 1`] = `
+exports[`Categories TEST Buttons renders 1`] = `
 Array [
   <button
     class=""
+    data-testid="categ-btn"
     type="button"
   >
     Все
   </button>,
   <button
     class=""
+    data-testid="categ-btn"
     type="button"
   >
     Активные
   </button>,
   <button
     class=""
+    data-testid="categ-btn"
+    type="button"
+  >
+    Выполненные
+  </button>,
+  <button
+    type="button"
+  >
+    Очистить выполненные
+  </button>,
+]
+`;
+
+exports[`Categories component tests renders correctly initial document 1`] = `
+Array [
+  <button
+    class=""
+    data-testid="categ-btn"
+    type="button"
+  >
+    Все
+  </button>,
+  <button
+    class=""
+    data-testid="categ-btn"
+    type="button"
+  >
+    Активные
+  </button>,
+  <button
+    class=""
+    data-testid="categ-btn"
     type="button"
   >
     Выполненные

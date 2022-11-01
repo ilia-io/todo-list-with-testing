@@ -63,7 +63,7 @@ function App() {
     setTodos(todos.filter((todo) => todo.isCompleted === false));
   };
 
-  const addTodo = (todoText:string) => {
+  const addTodo = (todoText: string) => {
     setTodos([...todos, { id: getId(), title: todoText, isCompleted: false }]);
   };
 

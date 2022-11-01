@@ -11,6 +11,7 @@ exports[`Form component tests renders form 1`] = `
     value=""
   />
   <button
+    data-testid="add-btn"
     type="submit"
   >
     Добавить +

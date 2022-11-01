@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { ITodo } from './Todo';
 
 interface IFormProps {
-  // todos: ITodo[];
-  // setTodos: (todos: ITodo[] | ((prevVar: ITodo[]) => ITodo[])) => void;
   addTodo: (addInput: string) => void
 }
-
 
 const Form: React.FC<IFormProps> = ({ addTodo }) => {
   const [addInput, setAddInput] = useState('');
@@ -31,7 +27,7 @@ const Form: React.FC<IFormProps> = ({ addTodo }) => {
         type="text"
         placeholder="Что будем делать?"
       />
-      <button type="submit">Добавить +</button>
+      <button data-testid='add-btn' type="submit">Добавить +</button>
     </form>
   );
 };

@@ -29,7 +29,7 @@ describe('Categories TEST', () => {
      render(<Categories />);
     const buttons = screen.getAllByRole('button');
     expect(buttons).toHaveLength(4);
-    //expect(buttons).toMatchSnapshot();
+    expect(buttons).toMatchSnapshot();
   });
 
   it('text renders', () => {
